@@ -25,12 +25,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ToDoList" asp-action="Index">To do list</a>
-                        </li> 
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingList" asp-action="Index">Shopping list</a>
+                                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingList" asp-action="Index">Lista zakupów</a>
                         </li>
+                        <div class="dropdown">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Lista do zrobienia
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                <li class="nav-item">
+                                    <a class="dropdown-item text-dark" asp-controller="ToDo" asp-action="Index">Lista do zrobienia</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item text-dark" asp-controller="ToDo" asp-action="ToDoDone">Wykonane</a>
+                                </li>
+                                
+                            </ul>
                     </ul>
                 </div>
             </div>
