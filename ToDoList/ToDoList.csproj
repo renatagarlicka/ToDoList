@@ -20,8 +20,4 @@
     <ProjectReference Include="..\ToDoList.Models\ToDoList.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\ShoppingList\" />
-  </ItemGroup>
-
 </Project>

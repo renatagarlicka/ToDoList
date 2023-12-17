@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Models
 {
-    public class ShoppingList
+    public class ToDoListItem
     {
         [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(20)]
-        [DisplayName("Nazwa Listy")]
+        [DisplayName("Nazwa zadania")]
         public string Name { get; set; }
-        [MaxLength(100)]
-        [DisplayName("Lista zakupów")]
+        [MaxLength(60)]
+        [DisplayName("Opis zadania")]
         public string Description { get; set; }
+        public bool IsDone { get; set; }
     }
 }

@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToDoList.Models\ToDoList.Models.csproj" />
+  </ItemGroup>
+
 </Project>
