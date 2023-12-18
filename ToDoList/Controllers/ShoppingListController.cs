@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.DataAccess.Repository.IRepository;
 using ToDoList.Models;
@@ -8,16 +7,25 @@ namespace ToDoList.Controllers
 {
     public class ShoppingListController : Controller
     {
-        private readonly IShoppingListRepository _shoppingRepo;
-        public ShoppingListController(IShoppingListRepository db)
+        private readonly IUnitOfWork _unitOfWork;
+        
+        public ShoppingListController(IUnitOfWork unitOfWork)
         {
-            _shoppingRepo = db;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            List<ShoppingList> objShoppingList = _shoppingRepo.GetAll().ToList();
-            return View();
+            List<ShoppingList> objShoppingList = _unitOfWork.ShoppingLi.GetAll().ToList();
+            if (objShoppingList != null && objShoppingList.Any())
+            {
+                return View(objShoppingList);
+            }
+
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Create()
@@ -32,13 +40,15 @@ namespace ToDoList.Controllers
             {
                 ModelState.AddModelError("", "źle");
             }
+
             if (ModelState.IsValid)
             {
-                _shoppingRepo.Add(obj);
-                _shoppingRepo.Save();
+                _unitOfWork.ShoppingLi.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Utworzono";
                 return RedirectToAction("Index");
             }
+
             return View();
         }
     }

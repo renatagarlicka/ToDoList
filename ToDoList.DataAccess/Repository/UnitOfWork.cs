@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoList.DataAccess.Data;
 using ToDoList.DataAccess.Repository.IRepository;
-using ToDoList.Models;
 
 namespace ToDoList.DataAccess.Repository
 {
-    public class ShoppingListRepository : Repository<ShoppingList>, IShoppingListRepository
+    public class UnitOfWork:IUnitOfWork
     {
         private ApplicationDbContext _db;
+        public IShoppingListRepository ShoppingLi { get; private set; }
 
-        public ShoppingListRepository(ApplicationDbContext db):base(db)
+        public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            ShoppingLi = new ShoppingListRepository(_db);
         }
 
-        public void Update(ShoppingList obj)
+        public void Save()
         {
-            _db.shoppingList.Update(obj);
+           _db.SaveChanges();
         }
     }
 }

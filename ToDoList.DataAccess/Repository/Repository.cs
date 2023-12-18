@@ -19,6 +19,7 @@ namespace ToDoList.DataAccess.Repository
             _db = db;
             this.dbSet = _db.Set<T>();
         }
+
         public void Add(T entity)
         {
             dbSet.Add(entity);
@@ -45,6 +46,11 @@ namespace ToDoList.DataAccess.Repository
         {
             IQueryable<T> query = dbSet;
             return query.ToList();
+        }
+
+        public void Update(T entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
