@@ -1,9 +1,10 @@
 ﻿@model ShoppingList
 
 <form method="post">
+    @*<input asp-for="Id" hidden/>*@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Utwórz listę zakupów</h2>
+            <h2 class="text-primary">Edytuj listę zakupów</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
@@ -19,7 +20,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary" form-control>Stwórz</button>
+                <button type="submit" class="btn btn-primary" form-control>Update</button>
             </div>
             <div class="col-6">
                 <a asp-controller="ShoppingList" asp-action="Index" class="btn btn-secondary" form-control>Powrót</a>

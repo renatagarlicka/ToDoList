@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToDoList.Models;
 
 namespace ToDoList.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IToDoListRepository:IRepository<ToDoListItem>
     {
-        IShoppingListRepository ShoppingLi { get; }
-        IToDoListRepository ToDoList { get; }
-
-        void Save();
+        void Update(ToDoListItem obj);
     }
 }

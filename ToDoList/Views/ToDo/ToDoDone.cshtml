@@ -1,1 +1,38 @@
-﻿Done
+﻿@model List<ToDoListItem>
+
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Lista rzeczy zrobionych
+            </h2>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Tytuł
+                    </th>
+                    <th>
+                        Lista rzeczy zrobionych
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var obj in Model.Where(item => item.IsDone))
+                    {
+                        <tr>
+                            <td>@obj.Name</td>
+                            <td>@obj.Description</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <div>Brak rzeczy zrobionych. Do dzieła!</div>
+                }
+            </tbody>
+        </table>
+    </div>

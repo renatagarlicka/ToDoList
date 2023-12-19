@@ -8,20 +8,22 @@ using ToDoList.DataAccess.Repository.IRepository;
 
 namespace ToDoList.DataAccess.Repository
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _db;
         public IShoppingListRepository ShoppingLi { get; private set; }
+        public IToDoListRepository ToDoList { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             ShoppingLi = new ShoppingListRepository(_db);
+            ToDoList = new ToDoRepository(_db);
         }
 
         public void Save()
         {
-           _db.SaveChanges();
+            _db.SaveChanges();
         }
     }
 }
