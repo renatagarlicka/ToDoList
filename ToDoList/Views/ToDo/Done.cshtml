@@ -1,25 +1,28 @@
 ﻿@model ToDoListItem
 
 <form method="post">
+    @*<input asp-for="Id" hidden/>*@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Utwórz listę rzeczy do zrobienia</h2>
+            <h2 class="text-primary">Oznacz listę rzeczy do zrobienia jako wykonanną</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
         <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <input asp-for="Name" disabled class="form-control" />
         </div>
         <div class="mb-3">
             <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
+            <textarea asp-for="Description" disabled class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="IsDone"></label>
+            <input asp-for="IsDone" type="checkbox" class="form-control"/>
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary" form-control>Stwórz</button>
+                <button type="submit" class="btn btn-primary" form-control>Zrobione</button>
             </div>
             <div class="col-6">
                 <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary" form-control>Powrót</a>
@@ -33,4 +36,3 @@
         <partial name="_ValidationScriptsPartial" />
     }
 }
-

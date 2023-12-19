@@ -1,1 +1,29 @@
-﻿delete
+﻿@model ToDoListItem
+
+<form method="post">
+    @*<input asp-for="Id" hidden/>*@
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Usuń listę rzeczy</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" disabled class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" disabled class="form-control"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary" form-control>Usuń</button>
+            </div>
+            <div class="col-6">
+                <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary" form-control>Powrót</a>
+            </div>
+        </div>
+    </div>
+</form>
+

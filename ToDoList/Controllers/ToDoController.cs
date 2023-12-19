@@ -67,5 +67,34 @@ namespace ToDoList.Controllers
             }
             return View();
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            ToDoListItem? toDoListItemFromDb = _unitOfWork.ToDoList.Get(u => u.Id == id);
+            if (toDoListItemFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(toDoListItemFromDb);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeletePOST(int? id)
+        {
+            ToDoListItem obj = _unitOfWork.ToDoList.Get(c => c.Id == id);
+            if(obj==null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.ToDoList.Delete(obj);
+            _unitOfWork.Save();
+            TempData["success"] = "Usunięto";
+            return RedirectToAction("Index");
+        }
     }
 }

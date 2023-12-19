@@ -19,6 +19,7 @@ namespace ToDoList.Models
         [MaxLength(60)]
         [DisplayName("Opis zadania")]
         public string Description { get; set; }
+        [DisplayName("Czy zadanie zostało wykonane")]
         public bool IsDone { get; set; }
     }
 }
