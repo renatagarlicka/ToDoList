@@ -27,11 +27,6 @@ namespace ToDoList.Controllers
             }
         }
 
-        public IActionResult ToDoDone()
-        {
-            return View();
-        }
-
         public IActionResult Create()
         {
             return View();
@@ -94,6 +89,55 @@ namespace ToDoList.Controllers
             _unitOfWork.ToDoList.Delete(obj);
             _unitOfWork.Save();
             TempData["success"] = "Usunięto";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Done(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            List<ToDoListItem> completedItems = _unitOfWork.ToDoList.GetAll().Where(item => item.IsDone).ToList();
+            if (completedItems == null)
+            {
+                return NotFound();
+            }
+            return View(completedItems);
+        }
+
+        [HttpPost, ActionName("Done")]
+        public IActionResult DonePOST(int? id)
+        {
+            ToDoListItem obj = _unitOfWork.ToDoList.Get(c => c.Id == id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            obj.IsDone = true;
+            _unitOfWork.ToDoList.Update(obj);
+            _unitOfWork.Save();
+            TempData["success"] = "Przeniesiono do zakładki Zrobione";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ToDoDone()
+        {
+            List<ToDoListItem> completedItems = _unitOfWork.ToDoList.GetAll().Where(item => item.IsDone).ToList();
+            return View(completedItems);
+        }
+        public IActionResult Back(int? id)
+        {
+            ToDoListItem obj = _unitOfWork.ToDoList.Get(c => c.Id == id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            obj.IsDone = false;
+            _unitOfWork.ToDoList.Update(obj);
+            _unitOfWork.Save();
+            TempData["success"] = "Przeniesiono do zakładki Zrobione";
             return RedirectToAction("Index");
         }
     }
