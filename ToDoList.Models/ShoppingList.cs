@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoList.Models
 {
@@ -19,5 +20,8 @@ namespace ToDoList.Models
         [MaxLength(100)]
         [DisplayName("Lista zakupów")]
         public string Description { get; set; }
+        [ForeignKey("UserId")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
