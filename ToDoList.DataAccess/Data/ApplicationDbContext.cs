@@ -30,6 +30,11 @@ namespace ToDoList.DataAccess.Data
                .HasMany(u => u.ToDoLists)
                .WithOne(t => t.User)
                .HasForeignKey(t => t.UserId);
+
+            builder.Entity<ApplicationUser>()
+              .HasMany(u => u.ShoppingLists)
+              .WithOne(t => t.User)
+              .HasForeignKey(t => t.UserId);
         }
     }
 }

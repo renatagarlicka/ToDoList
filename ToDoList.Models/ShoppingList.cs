@@ -15,7 +15,7 @@ namespace ToDoList.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(20)]
-        [DisplayName("Nazwa Listy")]
+        [DisplayName("Nazwa sklepu")]
         public string Name { get; set; }
         [MaxLength(100)]
         [DisplayName("Lista zakupów")]

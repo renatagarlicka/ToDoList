@@ -1,6 +1,6 @@
 ﻿@model List<ShoppingList>
 
-<div class="container">
+<div class="container class=" backGlass"">
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">
@@ -13,42 +13,39 @@
             </a>
         </div>
     </div>
-    <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-                <th>
-                    Tytuł
-                </th>
-                <th>
-                    Lista zakupów
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
+
+    <div >
+        @if (Model != null)
+        {
+            @foreach (var obj in Model)
             {
-                @foreach (var obj in Model)
-                {
-                    <tr>
-                        <td>@obj.Name</td>
-                        <td>@obj.Description</td>
-                        <td>
-                            <div class="w-75 btn-group" role="group">
-                                <a asp-controller="ShoppingList" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                    <i class="bi bi-pencil-square"></i> Edit
-                                </a>
-                                <a asp-controller="ShoppingList" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash"></i> Delete
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                }
+                <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">@obj.Name</div>
+                    <div class="card-body">
+                        <h4 class="card-title">@obj.Name</h4>
+                        <p class="card-text">@obj.Description</p>
+                    </div>
+                </div>
+                @* <tr>
+        <td>@obj.Name</td>
+        <td>@obj.Description</td>
+        <td>
+        <div class="w-75 btn-group" role="group">
+        <a asp-controller="ShoppingList" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+        <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a asp-controller="ShoppingList" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+        <i class="bi bi-trash"></i> Delete
+        </a>
+        </div>
+        </td>
+        </tr> *@
             }
-            else
-            {
-                <div>Stwórz listę zakupów </div>
-            }
-        </tbody>
-    </table>
+        }
+        else
+        {
+            <div>Stwórz listę zakupów.</div>
+        }
+    </div>
 </div>
+

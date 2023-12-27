@@ -13,5 +13,6 @@ namespace ToDoList.Models
         public string Surrname { get; set; }
 
         public ICollection<ToDoListItem> ToDoLists { get; set; }
+        public ICollection<ShoppingList> ShoppingLists { get; set; }
     }
 }
