@@ -47,6 +47,7 @@ namespace ToDoList.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 _unitOfWork.ToDoList.Add(item);
                 _unitOfWork.Save();
                 TempData["success"] = "Utworzono";

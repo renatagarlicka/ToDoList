@@ -20,6 +20,7 @@ namespace ToDoList.Models
         [MaxLength(100)]
         [DisplayName("Lista zakupów")]
         public string Description { get; set; }
+        [Required]
         [ForeignKey("UserId")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }

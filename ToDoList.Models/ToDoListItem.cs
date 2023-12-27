@@ -22,7 +22,7 @@ namespace ToDoList.Models
         public string Description { get; set; }
         [DisplayName("Czy zadanie zostało wykonane")]
         public bool IsDone { get; set; }
-
+        [Required]
         [ForeignKey("UserId")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
