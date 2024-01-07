@@ -2,6 +2,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 
+.backGlassBackground {
+    background-color: rgba(152, 255, 152, 0.4); 
+    backdrop-filter: blur(10px); 
+    width: auto;
+    height: auto;
+}
+
+
 :root,
 [data-bs-theme=light] {
     --bs-blue: #007bff;

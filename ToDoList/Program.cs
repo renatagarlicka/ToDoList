@@ -40,8 +40,32 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    
+    endpoints.MapControllerRoute(
+        name: "createDaily",
+        pattern: "planner/create-daily",
+        defaults: new { controller = "PlannerCreator", action = "DailyPlanner" }
+    );
+
+    endpoints.MapControllerRoute(
+        name: "createWeekly",
+        pattern: "planner/create-weekly",
+        defaults: new { controller = "PlannerCreator", action = "WeeklyPlanner" }
+    );
+
+    endpoints.MapControllerRoute(
+        name: "createMonthly",
+        pattern: "planner/create-monthly",
+        defaults: new { controller = "PlannerCreator", action = "MonthlyPlanner" }
+    );
+
+});
 
 app.Run();

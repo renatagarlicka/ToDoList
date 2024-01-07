@@ -10,6 +10,7 @@ namespace ToDoList.DataAccess.Repository.IRepository
     {
         IShoppingListRepository ShoppingLi { get; }
         IToDoListRepository ToDoList { get; }
+        IPlannerRepository Planner { get; }
 
         void Save();
     }

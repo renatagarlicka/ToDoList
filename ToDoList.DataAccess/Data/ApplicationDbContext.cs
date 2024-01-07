@@ -21,6 +21,8 @@ namespace ToDoList.DataAccess.Data
         public DbSet<ToDoListItem> toDoListItems { get; set; }
         public DbSet<ShoppingList> shoppingList { get; set; }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
+        public DbSet<Planner> planner { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

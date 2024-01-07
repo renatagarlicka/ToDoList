@@ -24,6 +24,9 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" asp-controller="Planner" asp-action="Index">Stwórz planer</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" asp-controller="ShoppingList" asp-action="Index">Lista zakupów</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -31,7 +34,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-controller="ToDo" asp-action="Index">Lista do zrobienia</a>
                                 <a class="dropdown-item" asp-controller="ToDo" asp-action="ToDoDone">Wykonane</a>
-                            </div>
+                            </div>                          
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
