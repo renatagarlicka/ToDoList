@@ -24,6 +24,14 @@
                     <div class="card-body">
                         <h4 class="card-title">@obj.Name</h4>
                         <p class="card-text">@obj.Description</p>
+                        <div>
+                            <a asp-controller="ShoppingList" asp-action="Edit" class="btn btn-primary">
+                                <i class="bi bi-minus"></i> Edytuj
+                            </a>
+                            <a asp-controller="ShoppingList" asp-action="Delete" class="btn btn-primary">
+                                <i class="bi bi-minus"></i> Usuń
+                            </a>
+                        </div>
                     </div>
                 </div>
             }

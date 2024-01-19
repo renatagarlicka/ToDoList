@@ -24,6 +24,6 @@ namespace ToDoList.Models
         [ForeignKey("UserId")]
         public string UserId { get; set; }
         [Required(ErrorMessage ="{0} User is empty or null")]
-        public ApplicationUser User { get; set; }
+        ApplicationUser User { get; set; }
     }
 }

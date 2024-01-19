@@ -20,23 +20,8 @@ namespace ToDoList.DataAccess.Data
 
         public DbSet<ToDoListItem> toDoListItems { get; set; }
         public DbSet<ShoppingList> shoppingList { get; set; }
-        public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<Planner> planner { get; set; }
+        public DbSet<ApplicationUser> applicationUsers { get; set; }
 
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.Entity<ApplicationUser>()
-               .HasMany(u => u.ToDoLists)
-               .WithOne(t => t.User)
-               .HasForeignKey(t => t.UserId);
-
-            builder.Entity<ApplicationUser>()
-              .HasMany(u => u.ShoppingLists)
-              .WithOne(t => t.User)
-              .HasForeignKey(t => t.UserId);
-        }
     }
 }

@@ -17,7 +17,6 @@ namespace ToDoList.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
         public IActionResult Index()
         {
             List<ToDoListItem> objToDoList = _unitOfWork.ToDoList.GetAll().Where(obj=>!obj.IsDone).ToList();
@@ -31,7 +30,6 @@ namespace ToDoList.Controllers
             }
         }
 
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +55,6 @@ namespace ToDoList.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult Edit(ToDoListItem item)
         {
             if (ModelState.IsValid)
@@ -70,7 +67,6 @@ namespace ToDoList.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult Delete(int? id)
         {
             if(id == null || id == 0)

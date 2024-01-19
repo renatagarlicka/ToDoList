@@ -15,7 +15,6 @@ namespace ToDoList.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
         public IActionResult Index()
         {
             List<ShoppingList> objShoppingList = _unitOfWork.ShoppingLi.GetAll().ToList();
@@ -30,7 +29,6 @@ namespace ToDoList.Controllers
             }
         }
 
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,7 +53,6 @@ namespace ToDoList.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult Edit(ShoppingList obj)
         {
             if(ModelState.IsValid)
@@ -68,7 +65,6 @@ namespace ToDoList.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult Delete(int? id) 
         {
             if (id == null || id == 0)
