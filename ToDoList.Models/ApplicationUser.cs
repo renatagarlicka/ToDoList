@@ -9,10 +9,6 @@ namespace ToDoList.Models
 {
     public class ApplicationUser:IdentityUser
     {
-        public string Name { get; set; }
-        public string Surrname { get; set; }
-
-        public ICollection<ToDoListItem> ToDoLists { get; set; }
-        public ICollection<ShoppingList> ShoppingLists { get; set; }
+        
     }
 }

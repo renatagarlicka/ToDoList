@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoList.Models
@@ -22,9 +17,6 @@ namespace ToDoList.Models
         public string Description { get; set; }
         [DisplayName("Czy zadanie zostało wykonane")]
         public bool IsDone { get; set; }
-        [Required]
-        [ForeignKey("UserId")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        
     }
 }

@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Claims;
-using System.Xml.Serialization;
+﻿using Microsoft.AspNetCore.Mvc;
 using ToDoList.DataAccess.Repository.IRepository;
-using Microsoft.Identity;
 using ToDoList.Models;
 
 namespace ToDoList.Controllers
