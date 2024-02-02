@@ -1,27 +1,37 @@
-﻿<div class="backGlassBackground">
+﻿@{
+    ViewData["Title"] = "Organisation Helper - Planner";
+}
 
-<h1>Jaki planer chcesz zobaczyć?</h1>
+<div class="text-center">
 
-<div class="card text-center" style="width: 18rem;">
-  <div class="card-body">
-        <h5 class="card-title">Dzienny planer</h5>
-    <p class="card-text">Stwórz swój własny dzienny organizer</p>
-        <a asp-controller="Planner" asp-action="DailyPlanner" class="btn btn-primary">Stwórz dzienny planer</a>
-  </div>
-</div>
+    <h1>Jaki planer chcesz zobaczyć?</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3  col-md-6 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="nav-link linkColor" asp-controller="Planner" asp-action="DailyPlanner">Stwórz dzienny planer</a></h5>
+                        <p class="card-text">Stwórz swój własny dzienny organizer</p>
+                    </div>
+                </div>
+            </div>
 
-<div class="card text-center" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">Tygodniowy planer</h5>
-        <p class="card-text">Stwórz swój własny tygodniowy organizer</p>
-        <a asp-controller="Planner" asp-action="WeeklyPlanner" class="btn btn-primary">Stwórz tygodniowy planer</a>
+            <div class="col-lg-3  col-md-6 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="nav-link linkColor" asp-controller="Planner" asp-action="WeeklyPlanner">Stwórz tygodniowy planer</a></h5>
+                        <p class="card-text">Stwórz swój własny tygodniowy organizer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-6 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="nav-link linkColor" asp-controller="Planner" asp-action="MonthlyPlanner">Stwórz miesięczny planer</a></h5>
+                        <p class="card-text">Stwórz swój własny miesięczny organizer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div class="card text-center" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">Miesięczny planer</h5>
-        <p class="card-text">Stwórz swój własny miesięczny organizer</p>
-        <a asp-controller="Planner" asp-action="MonthlyPlanner" class="btn btn-primary">Stwórz miesięczny planer</a>
-    </div>
-</div>
 </div>

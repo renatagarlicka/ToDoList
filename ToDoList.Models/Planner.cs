@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToDoList.Models
 {
@@ -13,10 +7,10 @@ namespace ToDoList.Models
     {
         [Key]
         public int Id { get; set; }
-        [DisplayName("Typ plannera")]
-        public string Name { get; set; }
         [DisplayName("Tytuł plannera")]
-        public string Title { get; set; }
+        public string Name { get; set; }
+        [DisplayName("Typ plannera")]
+        public PlannerType Type { get; set; }
         [DisplayName("Chces opcję poziom nastroju?")]
         public bool MoodOption { get; set; }
         [DisplayName("Chces opcję poziom produktywności?")]
@@ -30,5 +24,12 @@ namespace ToDoList.Models
         [DisplayName("Chces opcję motywacyjne cytaty?")]
         public bool QuotesOption { get; set; }
 
+    }
+
+    public enum PlannerType
+    {
+        Daily,
+        Weekly,
+        Monthly
     }
 }

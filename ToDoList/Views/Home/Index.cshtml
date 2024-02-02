@@ -3,5 +3,48 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Card 1 - Shopping List -->
+            <div class="col-lg-3  col-md-6 d-flex justify-content-center">
+                <div class="card cardHolder">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a class="nav-link linkColor" asp-controller="ShoppingList" asp-action="Index">Lista zakupów</a>
+                        </h5>
+                        <p class="card-text">Stwórz i zarządzj listami zakupów</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - ToDoList -->
+            <div class="col-lg-3  col-md-6 d-flex justify-content-center">
+                <div class="card cardHolder">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a class="nav-link linkColor" asp-controller="ToDo" asp-action="Index">Lista do wykonania</a>
+                        </h5>
+                        <p class="card-text">
+                            Zarządzaj swoimi obowiązkami/celami, dodawaj odchaczaj i motywuj się do działania.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Planner-->
+            <div class="col-lg-3  col-md-6 d-flex justify-content-center">
+                <div class="card cardHolder">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a class="nav-link linkColor" asp-controller="Planner" asp-action="Index">Planner</a>
+                        </h5>
+                        <p class="card-text">
+                            Stwórz własny planner.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
