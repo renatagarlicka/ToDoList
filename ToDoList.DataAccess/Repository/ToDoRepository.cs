@@ -12,7 +12,7 @@ namespace ToDoList.DataAccess.Repository
 {
     public class ToDoRepository:Repository<ToDoListItem>, IToDoListRepository
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public ToDoRepository(ApplicationDbContext db):base(db)
         {

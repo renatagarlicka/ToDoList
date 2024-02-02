@@ -5,7 +5,7 @@ namespace ToDoList.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         public IShoppingListRepository ShoppingLi { get; private set; }
         public IToDoListRepository ToDoList { get; private set; }
         public IPlannerRepository Planner { get; private set; }

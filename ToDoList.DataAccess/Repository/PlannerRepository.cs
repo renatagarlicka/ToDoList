@@ -11,7 +11,7 @@ namespace ToDoList.DataAccess.Repository
 {
     public class PlannerRepository : Repository<Planner>, IPlannerRepository
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         public PlannerRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;

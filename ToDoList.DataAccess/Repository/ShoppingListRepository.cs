@@ -12,7 +12,7 @@ namespace ToDoList.DataAccess.Repository
 {
     public class ShoppingListRepository : Repository<ShoppingList>, IShoppingListRepository
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public ShoppingListRepository(ApplicationDbContext db):base(db)
         {
