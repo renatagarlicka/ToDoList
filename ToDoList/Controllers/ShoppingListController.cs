@@ -17,7 +17,7 @@ namespace ToDoList.Controllers
 
         public IActionResult Index()
         {
-            List<ShoppingList> objShoppingList = _unitOfWork.ShoppingLi.GetAll().ToList();
+            var objShoppingList = _unitOfWork.ShoppingLi.GetAll().ToList();
             if (objShoppingList != null && objShoppingList.Any())
             {
                 return View(objShoppingList);
@@ -72,7 +72,7 @@ namespace ToDoList.Controllers
                 return NotFound();
             }
 
-            ShoppingList? shoppingListFromDb = _unitOfWork.ShoppingLi.Get(u => u.Id == id);
+            var shoppingListFromDb = _unitOfWork.ShoppingLi.Get(u => u.Id == id);
             if(shoppingListFromDb == null)
             {
                 return NotFound();
@@ -83,7 +83,7 @@ namespace ToDoList.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            ShoppingList obj = _unitOfWork.ShoppingLi.Get(c => c.Id == id);
+            var obj = _unitOfWork.ShoppingLi.Get(c => c.Id == id);
             if(obj == null)
             {
                 return NotFound();

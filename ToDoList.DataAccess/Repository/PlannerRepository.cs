@@ -16,10 +16,6 @@ namespace ToDoList.DataAccess.Repository
         {
             _db = db;
         }
-
-        public void Update(Planner obj)
-        {
-            _db.planner.Update(obj);
-        }
+              
     }
 }

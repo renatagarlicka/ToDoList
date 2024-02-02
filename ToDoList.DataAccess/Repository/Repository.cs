@@ -50,7 +50,7 @@ namespace ToDoList.DataAccess.Repository
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            dbSet.Update(entity);
         }
     }
 }

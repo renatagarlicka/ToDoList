@@ -14,7 +14,7 @@ namespace ToDoList.Controllers
 
         public IActionResult Index()
         {
-            List<ToDoListItem> objToDoList = _unitOfWork.ToDoList.GetAll().Where(obj=>!obj.IsDone).ToList();
+            var objToDoList = _unitOfWork.ToDoList.GetAll().Where(obj=>!obj.IsDone).ToList();
             if (objToDoList != null && objToDoList.Any())
             {
                 return View(objToDoList);
@@ -69,7 +69,7 @@ namespace ToDoList.Controllers
                 return NotFound();
             }
 
-            ToDoListItem? toDoListItemFromDb = _unitOfWork.ToDoList.Get(u => u.Id == id);
+            var toDoListItemFromDb = _unitOfWork.ToDoList.Get(u => u.Id == id);
             if (toDoListItemFromDb == null)
             {
                 return NotFound();

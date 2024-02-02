@@ -9,6 +9,6 @@ namespace ToDoList.DataAccess.Repository.IRepository
 {
     public interface IShoppingListRepository:IRepository<ShoppingList>
     {
-        void Update(ShoppingList obj);
+        
     }
 }

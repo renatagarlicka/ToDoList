@@ -18,10 +18,6 @@ namespace ToDoList.DataAccess.Repository
         {
             _db = db;
         }
-
-        public void Update(ShoppingList obj)
-        {
-            _db.shoppingList.Update(obj);
-        }
+     
     }
 }
