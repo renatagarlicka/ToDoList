@@ -1,7 +1,6 @@
 ﻿@model ToDoListItem
 
 <form method="post">
-    @*<input asp-for="Id" hidden/>*@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="perfectColorText">Oznacz zadanie jako wykonanne</h2>
@@ -18,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label asp-for="IsDone" class="perfectColorText"></label>
-            <input asp-for="IsDone" type="checkbox" class="perfectColorText form-control"/>
+            <input asp-for="IsDone" type="checkbox" class="perfectColorText form-control" />
         </div>
         <div class="row">
             <div class="col-6">

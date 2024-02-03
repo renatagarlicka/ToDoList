@@ -14,8 +14,8 @@ namespace ToDoList.Controllers
         }
 
         public IActionResult Index()
-        {           
-            var objToDoList = _toDoListRepository.GetAll().Where(obj => !obj.IsDone).ToList();
+        {
+            var objToDoList = _toDoListRepository.GetAll().ToList();
             if (objToDoList != null && objToDoList.Any())
             {
                 return View(objToDoList);
@@ -25,12 +25,21 @@ namespace ToDoList.Controllers
                 return View();
             }
         }
-        
+
         public IActionResult Create()
         {
+            var taskProgressValues = Enum.GetValues(typeof(TaskProgress))
+                                 .Cast<TaskProgress>()
+                                 .Select(v => new SelectListItem
+                                 {
+                                     Text = v.ToString(),
+                                     Value = ((int)v).ToString()
+                                 });
+
+            ViewBag.TaskProgressValues = new SelectList(taskProgressValues, "Value", "Text");
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult Create(ToDoListItem item)
         {
@@ -50,7 +59,7 @@ namespace ToDoList.Controllers
             }
 
             return View();
-        }      
+        }
 
         public IActionResult Edit(int? id)
         {
@@ -76,7 +85,7 @@ namespace ToDoList.Controllers
             if (obj == null)
             {
                 return NotFound();
-            }            
+            }
             return View(obj);
         }
 
@@ -126,17 +135,19 @@ namespace ToDoList.Controllers
 
         public IActionResult Done(int? id)
         {
+
+            var obj = _toDoListRepository.Get(c => c.Id == id);
+
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            List<ToDoListItem> completedItems = _toDoListRepository.GetAll().Where(item => item.IsDone).ToList();
-            if (completedItems == null)
+            if (obj == null)
             {
                 return NotFound();
             }
-            return View(completedItems);
+            return View(obj);
         }
 
         [HttpPost, ActionName("Done")]
@@ -148,6 +159,7 @@ namespace ToDoList.Controllers
                 return NotFound();
             }
             obj.IsDone = true;
+            obj.Progress = TaskProgress.Done;
             _toDoListRepository.Update(obj);
             _toDoListRepository.Save();
             TempData["success"] = "Przeniesiono do zakładki Zrobione";
@@ -156,9 +168,20 @@ namespace ToDoList.Controllers
 
         public IActionResult ToDoDone()
         {
-            List<ToDoListItem> completedItems = _toDoListRepository.GetAll().Where(item => item.IsDone).ToList();
-            return View(completedItems);
+
+            var objToDoList = _toDoListRepository.GetAll().Where(obj => obj.IsDone).ToList();
+
+
+            if (objToDoList != null && objToDoList.Any())
+            {
+                return View(objToDoList);
+            }
+            else
+            {
+                return View();
+            }
         }
+
         public IActionResult Back(int? id)
         {
             ToDoListItem obj = _toDoListRepository.Get(c => c.Id == id);
