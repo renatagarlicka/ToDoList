@@ -9,6 +9,6 @@ namespace ToDoList.DataAccess.Repository.IRepository
 {
     public interface IToDoListRepository:IRepository<ToDoListItem>
     {
-       
+        void Save();
     }
 }

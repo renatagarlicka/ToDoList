@@ -17,6 +17,14 @@ namespace ToDoList.Models
         public string Description { get; set; }
         [DisplayName("Czy zadanie zostało wykonane")]
         public bool IsDone { get; set; }
-        
+        public TaskProgress Progress { get; set; }
+
+    }
+
+    public enum TaskProgress
+    {
+        NotDone,
+        Progress,
+        Done
     }
 }

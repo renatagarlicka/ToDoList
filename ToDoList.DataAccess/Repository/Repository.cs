@@ -1,9 +1,4 @@
-﻿ using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using ToDoList.DataAccess.Data;
 using ToDoList.DataAccess.Repository.IRepository;
 
@@ -47,7 +42,7 @@ namespace ToDoList.DataAccess.Repository
             IQueryable<T> query = dbSet;
             return query.ToList();
         }
-
+        
         public void Update(T entity)
         {
             dbSet.Update(entity);

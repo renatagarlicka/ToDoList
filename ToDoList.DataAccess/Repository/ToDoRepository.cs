@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Update.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToDoList.DataAccess.Data;
+﻿using ToDoList.DataAccess.Data;
 using ToDoList.DataAccess.Repository.IRepository;
 using ToDoList.Models;
 
@@ -18,6 +12,10 @@ namespace ToDoList.DataAccess.Repository
         {
             _db = db;
         }
-       
+
+        public void Save()
+        {
+            _db.SaveChanges();
+        }
     }
 }

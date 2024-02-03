@@ -6,15 +6,15 @@ namespace ToDoList.Controllers
 {
     public class ToDoController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public ToDoController(IUnitOfWork unitOfWork)
+        private readonly IToDoListRepository _toDoListRepository;
+        public ToDoController(IToDoListRepository db)
         {
-            _unitOfWork = unitOfWork;
+            _toDoListRepository = db;
         }
 
         public IActionResult Index()
         {
-            var objToDoList = _unitOfWork.ToDoList.GetAll().Where(obj=>!obj.IsDone).ToList();
+            var objToDoList = _toDoListRepository.GetAll().Where(obj => !obj.IsDone).ToList();
             if (objToDoList != null && objToDoList.Any())
             {
                 return View(objToDoList);
@@ -40,9 +40,9 @@ namespace ToDoList.Controllers
 
             if (ModelState.IsValid)
             {
-                
-                _unitOfWork.ToDoList.Add(item);
-                _unitOfWork.Save();
+
+                _toDoListRepository.Add(item);
+                _toDoListRepository.Save();
                 TempData["success"] = "Utworzono";
                 return RedirectToAction("Index");
             }
@@ -54,8 +54,8 @@ namespace ToDoList.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.ToDoList.Update(item);
-                _unitOfWork.Save();
+                _toDoListRepository.Update(item);
+                _toDoListRepository.Save();
                 TempData["success"] = "Uaktualniono listę rzeczy do zrobienia";
                 return RedirectToAction("Index");
             }
@@ -64,12 +64,12 @@ namespace ToDoList.Controllers
 
         public IActionResult Delete(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var toDoListItemFromDb = _unitOfWork.ToDoList.Get(u => u.Id == id);
+            var toDoListItemFromDb = _toDoListRepository.Get(u => u.Id == id);
             if (toDoListItemFromDb == null)
             {
                 return NotFound();
@@ -77,16 +77,16 @@ namespace ToDoList.Controllers
             return View(toDoListItemFromDb);
         }
 
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            ToDoListItem obj = _unitOfWork.ToDoList.Get(c => c.Id == id);
-            if(obj==null)
+            ToDoListItem obj = _toDoListRepository.Get(c => c.Id == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _unitOfWork.ToDoList.Delete(obj);
-            _unitOfWork.Save();
+            _toDoListRepository.Delete(obj);
+            _toDoListRepository.Save();
             TempData["success"] = "Usunięto";
             return RedirectToAction("Index");
         }
@@ -98,7 +98,7 @@ namespace ToDoList.Controllers
                 return NotFound();
             }
 
-            List<ToDoListItem> completedItems = _unitOfWork.ToDoList.GetAll().Where(item => item.IsDone).ToList();
+            List<ToDoListItem> completedItems = _toDoListRepository.GetAll().Where(item => item.IsDone).ToList();
             if (completedItems == null)
             {
                 return NotFound();
@@ -109,35 +109,36 @@ namespace ToDoList.Controllers
         [HttpPost, ActionName("Done")]
         public IActionResult DonePOST(int? id)
         {
-            ToDoListItem obj = _unitOfWork.ToDoList.Get(c => c.Id == id);
+            ToDoListItem obj = _toDoListRepository.Get(c => c.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
             obj.IsDone = true;
-            _unitOfWork.ToDoList.Update(obj);
-            _unitOfWork.Save();
+            _toDoListRepository.Update(obj);
+            _toDoListRepository.Save();
             TempData["success"] = "Przeniesiono do zakładki Zrobione";
             return RedirectToAction("Index");
         }
 
         public IActionResult ToDoDone()
         {
-            List<ToDoListItem> completedItems = _unitOfWork.ToDoList.GetAll().Where(item => item.IsDone).ToList();
+            List<ToDoListItem> completedItems = _toDoListRepository.GetAll().Where(item => item.IsDone).ToList();
             return View(completedItems);
         }
         public IActionResult Back(int? id)
         {
-            ToDoListItem obj = _unitOfWork.ToDoList.Get(c => c.Id == id);
+            ToDoListItem obj = _toDoListRepository.Get(c => c.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
             obj.IsDone = false;
-            _unitOfWork.ToDoList.Update(obj);
-            _unitOfWork.Save();
+            _toDoListRepository.Update(obj);
+            _toDoListRepository.Save();
             TempData["success"] = "Przeniesiono do zakładki Zrobione";
             return RedirectToAction("Index");
         }
     }
 }
+

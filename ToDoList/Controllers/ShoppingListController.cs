@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ToDoList.DataAccess.Repository.IRepository;
 using ToDoList.Models;
 
@@ -8,16 +6,16 @@ namespace ToDoList.Controllers
 {
     public class ShoppingListController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        
-        public ShoppingListController(IUnitOfWork unitOfWork)
+        private readonly IShoppingListRepository _shoppingRepository;
+
+        public ShoppingListController(IShoppingListRepository db)
         {
-            _unitOfWork = unitOfWork;
+            _shoppingRepository=db;
         }
 
         public IActionResult Index()
         {
-            var objShoppingList = _unitOfWork.ShoppingLi.GetAll().ToList();
+            var objShoppingList = _shoppingRepository.GetAll().ToList();
             if (objShoppingList != null && objShoppingList.Any())
             {
                 return View(objShoppingList);
@@ -44,8 +42,8 @@ namespace ToDoList.Controllers
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.ShoppingLi.Add(obj);
-                _unitOfWork.Save();
+                _shoppingRepository.Add(obj);
+                _shoppingRepository.Save();
                 TempData["success"] = "Utworzono";
                 return RedirectToAction("Index");
             }
@@ -53,27 +51,28 @@ namespace ToDoList.Controllers
             return View();
         }
 
-        public IActionResult Edit(ShoppingList obj)
+        public IActionResult Edit(ShoppingList item)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _unitOfWork.ShoppingLi.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Uaktualniono listę zakupów";
+                _shoppingRepository.Update(item);
+                _shoppingRepository.Save();
+                TempData["success"] = "Uaktualniono listę rzeczy do zrobienia";
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        public IActionResult Delete(int? id) 
+        public IActionResult Delete(int? id)
         {
+            var shoppingListFromDb = _shoppingRepository.Get(u => u.Id == id);
+
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var shoppingListFromDb = _unitOfWork.ShoppingLi.Get(u => u.Id == id);
-            if(shoppingListFromDb == null)
+            if (shoppingListFromDb == null)
             {
                 return NotFound();
             }
@@ -83,13 +82,13 @@ namespace ToDoList.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _unitOfWork.ShoppingLi.Get(c => c.Id == id);
-            if(obj == null)
+            var obj = _shoppingRepository.Get(c => c.Id == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _unitOfWork.ShoppingLi.Delete(obj);
-            _unitOfWork.Save();
+            _shoppingRepository.Delete(obj);
+            _shoppingRepository.Save();
             TempData["success"] = "Usunięto";
             return RedirectToAction("Index");
         }
