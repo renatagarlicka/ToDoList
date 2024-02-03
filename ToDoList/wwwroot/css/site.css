@@ -1,11 +1,11 @@
 html {
     font-size: 14px;
+    font-family: 'Times New Roman', serif;
 }
 
 .cardHolder {
     width: 18rem;
-    height: 15rem;
-    margin: 2rem;
+    height: 15rem;    
 }
 
 @media (min-width: 768px) {
@@ -22,17 +22,46 @@ html {
 
 body {
     margin-bottom: 60px;
+    font-family: 'Times New Roman', serif;
 }
 
 .linkColor {
-    color: #299dd6; /* Default text color */
+    color: #047678; /* Default text color */
+    font-family: 'Times New Roman', serif;
 }
 
     .linkColor:hover {
-        color: #0a5073; /* Text color on hover */
+        color: #0a5073; /* Text color on hover **/
     }
 
-    .linkColor:active,
-    .linkColor.active {
-        color: #1f3a47; /* Text color when clicked or in active state */
-    }
+.text-title {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
+}
+
+.btn-color {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
+}
+
+.perfectColorText {
+    color: #047678;
+    font-family: 'Times New Roman', serif;    
+}
+
+.perfectColorButton {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
+    border: 2px solid #047678;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cardOptions {
+    margin:1rem;
+    color: #047678;
+    font-family: 'Times New Roman', serif;
+    border: 2px solid #047678;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}

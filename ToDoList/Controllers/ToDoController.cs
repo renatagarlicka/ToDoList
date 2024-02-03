@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ToDoList.DataAccess.Repository.IRepository;
 using ToDoList.Models;
 
@@ -13,7 +14,7 @@ namespace ToDoList.Controllers
         }
 
         public IActionResult Index()
-        {
+        {           
             var objToDoList = _toDoListRepository.GetAll().Where(obj => !obj.IsDone).ToList();
             if (objToDoList != null && objToDoList.Any())
             {
@@ -24,15 +25,16 @@ namespace ToDoList.Controllers
                 return View();
             }
         }
-
+        
         public IActionResult Create()
         {
             return View();
         }
-
+        
         [HttpPost]
         public IActionResult Create(ToDoListItem item)
         {
+            
             if (item.Name == "test")
             {
                 ModelState.AddModelError("", "źle");
@@ -52,6 +54,18 @@ namespace ToDoList.Controllers
 
         public IActionResult Edit(int? id)
         {
+
+            var taskProgressValues = Enum.GetValues(typeof(TaskProgress))
+                                  .Cast<TaskProgress>()
+                                  .Select(v => new SelectListItem
+                                  {
+                                      Text = v.ToString(),
+                                      Value = ((int)v).ToString()
+                                  });
+
+            ViewBag.TaskProgressValues = new SelectList(taskProgressValues, "Value", "Text");
+
+
             var obj = _toDoListRepository.Get(c => c.Id == id);
 
             if (id == null || id == 0)
@@ -62,8 +76,7 @@ namespace ToDoList.Controllers
             if (obj == null)
             {
                 return NotFound();
-            }
-
+            }            
             return View(obj);
         }
 

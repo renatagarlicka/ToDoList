@@ -1,45 +1,53 @@
 ﻿@model List<ShoppingList>
+@{
+    ViewData["Title"] = "Lista zakópów";
+}
 
-<div class="container">
+<div class="container perfectColorText">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">
+            <h2>
                 Lista zakupów
             </h2>
         </div>
         <div class="col-6">
-            <a asp-controller="ShoppingList" asp-action="Create" class="btn btn-primary">
+            <a asp-controller="ShoppingList" asp-action="Create" class="btn perfectColorButton">
                 <i class="bi bi-plus"></i> Utwóż nową listę
             </a>
         </div>
     </div>
 
     <div>
-        @if (Model != null)
-        {
-            @foreach (var obj in Model)
+        <div class="row">
+            @if (Model != null)
             {
-                <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-                    <div class="card-header">@obj.Name</div>
-                    <div class="card-body">
-                        <h4 class="card-title">@obj.Name</h4>
-                        <p class="card-text">@obj.Description</p>
-                        <div>
-                            <a asp-controller="ShoppingList" asp-action="Edit" class="btn btn-primary">
-                                <i class="bi bi-minus"></i> Edytuj
-                            </a>
-                            <a asp-controller="ShoppingList" asp-action="Delete" class="btn btn-primary">
-                                <i class="bi bi-minus"></i> Usuń
-                            </a>
+                @foreach (var obj in Model)
+                {
+
+                    <div class="card cardOptions mb-3" style="max-width: 20rem;">
+                        <div class="card-header">@obj.Name</div>
+                        <div class="card-body">
+                            <h4 class="card-title">@obj.Name</h4>
+                            <p class="card-text">@obj.Description</p>
+                            <div>
+                                <a asp-controller="ShoppingList" asp-action="Edit" asp-route-id="@obj.Id" class="btn perfectColorButton">
+                                    <i class="bi bi-minus"></i> Edytuj
+                                </a>
+                                <a asp-controller="ShoppingList" asp-action="Delete" asp-route-id="@obj.Id" class="btn perfectColorButton">
+                                    <i class="bi bi-minus"></i> Usuń
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                }
+
             }
-        }
-        else
-        {
-            <div>Stwórz listę zakupów.</div>
-        }
+            else
+            {
+                <div>Stwórz listę zakupów.</div>
+            }
+        </div>
     </div>
 </div>
 

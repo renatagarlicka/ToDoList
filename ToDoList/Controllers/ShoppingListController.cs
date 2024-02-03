@@ -52,17 +52,50 @@ namespace ToDoList.Controllers
             return View();
         }
 
-        public IActionResult Edit(ShoppingList item)
+        //public IActionResult Edit(ShoppingList item)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _shoppingRepository.Update(item);
+        //        _shoppingRepository.Save();
+        //        TempData["success"] = "Uaktualniono listę rzeczy do zrobienia";
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
+
+        public IActionResult Edit(int? id)
         {
+            var shoppingListFromDb = _shoppingRepository.Get(c => c.Id == id);
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            if (shoppingListFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(shoppingListFromDb);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public IActionResult EditPOST(ShoppingList obj)
+        {
+
             if (ModelState.IsValid)
             {
-                _shoppingRepository.Update(item);
-                _shoppingRepository.Save();
-                TempData["success"] = "Uaktualniono listę rzeczy do zrobienia";
+                _shoppingRepository.Update(obj);
+                _shoppingRepository.Save();                
+                TempData["success"] = "Uaktualniono";
                 return RedirectToAction("Index");
             }
             return View();
         }
+
+
 
         public IActionResult Delete(int? id)
         {

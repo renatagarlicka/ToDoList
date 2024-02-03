@@ -1,17 +1,28 @@
 ﻿@model ToDoListItem
 
+@{
+    ViewData["Title"] = "Lista do wykonania";
+}
+
 <form method="post">
-    @*<input asp-for="Id" hidden/>*@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Edytuj listę rzeczy</h2>
+            <h2 class="perfectColorText">Edytuj listę rzeczy</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
-        <div class="mb-3">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="mb-3 row">
+            <div class="col-sm-6">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="perfectColorText"></span>
+            </div>
+            <div class="col-sm-4">
+                <label class="perfectColorText" for="taskProgress">Status</label>
+                <select class="perfectColorText" id="taskProgress" name="TaskProgress" asp-for="@Model.Progress" asp-items="@ViewBag.TaskProgressValues">
+                    @* przypisać wybór do ToDoListItems.Progress *@
+                </select>                
+            </div>
         </div>
         <div class="mb-3">
             <label asp-for="Description"></label>
@@ -19,10 +30,10 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary" form-control>Update</button>
+                <button type="submit" class="btn perfectColorButton" form-control>Update</button>
             </div>
             <div class="col-6">
-                <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary" form-control>Powrót</a>
+                <a asp-controller="ToDo" asp-action="Index" class="btn perfectColorButton" form-control>Powrót</a>
             </div>
         </div>
     </div>

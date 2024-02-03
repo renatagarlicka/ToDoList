@@ -2,25 +2,35 @@
     white-space: normal;
     text-align: center;
     word-break: break-all;
+    color: #047678;
+    font-family: 'Times New Roman', serif;
+}
+.navbar-brand {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
 }
 
 a {
-    color: #3281a8;
+    font-family: 'Times New Roman', serif;
+    color: #047678;
 }
 
 .btn-primary {
-    color: #3281a8;
+    color:#047678;    
+    font-family: 'Times New Roman', serif;
     background-color: #3281a8;
     border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #3281a8;
+    color: #047678;
+    font-family: 'Times New Roman', serif;
     background-color: #3281a8;
     border-color: #3281a8;
 }
 
 .border-top {
+    font-family: 'Times New Roman', serif;
     border-top: 1px solid #e5e5e5;
 }
 
@@ -33,14 +43,23 @@ a {
 }
 
 button.accept-policy {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
     font-size: 1rem;
     line-height: inherit;
 }
 
 .footer {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
     position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+}
+
+.perfectColor {
+    color: #047678;
+    font-family: 'Times New Roman', serif;
 }

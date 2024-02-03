@@ -3,26 +3,26 @@
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Utwórz listę rzeczy do zrobienia</h2>
+            <h2 class="perfectColorText">Utwórz listę rzeczy do zrobienia</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>       
         <div class="mb-3">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label class="perfectColorText" asp-for="Name"></label>
+            <input asp-for="Name" class="perfectColorText form-control" />
+            <span asp-validation-for="Name" class="perfectColorText"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Description"></label>
-            <textarea id="mytextarea" asp-for="Description" class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
+            <label class="perfectColorText"  asp-for="Description"></label>
+            <textarea class="perfectColorText" id="mytextarea" asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description"></span>
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary" form-control>Stwórz</button>
+                <button type="submit" class="btn perfectColorButton">Stwórz</button>
             </div>
             <div class="col-6">
-                <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary" form-control>Powrót</a>
+                <a asp-controller="ToDo" asp-action="Index" class="btn perfectColorButton">Powrót</a>
             </div>
         </div>
     </div>

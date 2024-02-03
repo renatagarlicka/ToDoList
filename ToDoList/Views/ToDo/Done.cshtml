@@ -4,28 +4,28 @@
     @*<input asp-for="Id" hidden/>*@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Oznacz listę rzeczy do zrobienia jako wykonanną</h2>
+            <h2 class="perfectColorText">Oznacz zadanie jako wykonanne</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
         <div class="mb-3">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" disabled class="form-control" />
+            <label asp-for="Name" class="perfectColorText"></label>
+            <input asp-for="Name" disabled class="perfectColorText form-control" />
         </div>
         <div class="mb-3">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" disabled class="form-control"></textarea>
+            <label asp-for="Description" class="perfectColorText"></label>
+            <textarea asp-for="Description" disabled class="perfectColorText form-control"></textarea>
         </div>
         <div class="mb-3">
-            <label asp-for="IsDone"></label>
-            <input asp-for="IsDone" type="checkbox" class="form-control"/>
+            <label asp-for="IsDone" class="perfectColorText"></label>
+            <input asp-for="IsDone" type="checkbox" class="perfectColorText form-control"/>
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary" form-control>Zrobione</button>
+                <button type="submit" class="btn perfectColorButton">Zrobione</button>
             </div>
             <div class="col-6">
-                <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary" form-control>Powrót</a>
+                <a asp-controller="ToDo" asp-action="Index" class="btn perfectColorButton">Powrót</a>
             </div>
         </div>
     </div>

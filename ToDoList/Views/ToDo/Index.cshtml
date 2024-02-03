@@ -1,14 +1,17 @@
 ﻿@model List<ToDoListItem>
+@{
+    ViewData["Title"] = "Lista do wykonania";
+}
 
 <div class="container">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">
+            <h2 class="text-title">
                 Lista rzeczy do zrobienia
             </h2>
         </div>
         <div class="col-6">
-            <a asp-controller="ToDo" asp-action="Create" class="btn btn-primary">
+            <a asp-controller="ToDo" asp-action="Create" class="btn btn-color">
                 <i class="bi bi-plus"></i> Utwóż nową listę
             </a>
         </div>
@@ -20,7 +23,10 @@
                     Tytuł
                 </th>
                 <th>
-                    Lista zakupów
+                    Do wykonania
+                </th>
+                <th>
+                    Status
                 </th>
             </tr>
         </thead>
@@ -32,25 +38,26 @@
                     <tr>
                         <td>@obj.Name</td>
                         <td>@obj.Description</td>
+                        <td>@obj.Progress</td>
                         <td>
-                            <div class="w-75 btn-group" role="group">
-                                <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                            <p class="w-75 btn-group" role="group">
+                                <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-color mx-2">
                                     <i class="bi bi-pencil-square"></i> Edit
                                 </a>
-                                <a asp-controller="ToDo" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <a asp-controller="ToDo" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-color mx-2">
                                     <i class="bi bi-trash"></i> Delete
                                 </a>
-                                <a asp-controller="ToDo" asp-action="Done" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <a asp-controller="ToDo" asp-action="Done" asp-route-id="@obj.Id" class="btn btn-color mx-2">
                                     <i class="bi bi-pencil-square"></i> Zrobione
                                 </a>
-                            </div>
+                            </p>
                         </td>
                     </tr>
                 }
             }
             else
             {
-                <div>Stwórz listę rzeczy do zrobienia </div>
+                <tr>Stwórz listę rzeczy do zrobienia </tr>
             }
         </tbody>
     </table>

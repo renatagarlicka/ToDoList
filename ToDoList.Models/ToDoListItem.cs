@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoList.Models
 {
+    
     public class ToDoListItem
     {
         [Key]
@@ -17,14 +18,16 @@ namespace ToDoList.Models
         public string Description { get; set; }
         [DisplayName("Czy zadanie zostało wykonane")]
         public bool IsDone { get; set; }
+        [DisplayName("Czy zadanie zostało wykonane")]
         public TaskProgress Progress { get; set; }
 
     }
-
+   
     public enum TaskProgress
     {
         NotDone,
         Progress,
         Done
     }
+   
 }
