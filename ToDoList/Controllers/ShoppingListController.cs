@@ -7,10 +7,11 @@ namespace ToDoList.Controllers
     public class ShoppingListController : Controller
     {
         private readonly IShoppingListRepository _shoppingRepository;
+        
 
         public ShoppingListController(IShoppingListRepository db)
         {
-            _shoppingRepository=db;
+            _shoppingRepository = db;
         }
 
         public IActionResult Index()
@@ -65,13 +66,12 @@ namespace ToDoList.Controllers
 
         public IActionResult Delete(int? id)
         {
-            var shoppingListFromDb = _shoppingRepository.Get(u => u.Id == id);
-
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
+            var shoppingListFromDb = _shoppingRepository.Get(u => u.Id == id);
             if (shoppingListFromDb == null)
             {
                 return NotFound();

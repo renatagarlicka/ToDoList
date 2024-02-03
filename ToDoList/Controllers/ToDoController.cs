@@ -48,19 +48,39 @@ namespace ToDoList.Controllers
             }
 
             return View();
+        }      
+
+        public IActionResult Edit(int? id)
+        {
+            var obj = _toDoListRepository.Get(c => c.Id == id);
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
         }
 
-        public IActionResult Edit(ToDoListItem item)
+        [HttpPost, ActionName("Edit")]
+        public IActionResult EditPOST(ToDoListItem obj)
         {
+
             if (ModelState.IsValid)
             {
-                _toDoListRepository.Update(item);
+                _toDoListRepository.Update(obj);
                 _toDoListRepository.Save();
-                TempData["success"] = "Uaktualniono listę rzeczy do zrobienia";
+                TempData["success"] = "Uaktualniono";
                 return RedirectToAction("Index");
             }
             return View();
         }
+
 
         public IActionResult Delete(int? id)
         {
