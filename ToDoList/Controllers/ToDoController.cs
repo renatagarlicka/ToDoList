@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.RegularExpressions;
 using ToDoList.DataAccess.Repository.IRepository;
 using ToDoList.Models;
 
@@ -43,10 +44,10 @@ namespace ToDoList.Controllers
         [HttpPost]
         public IActionResult Create(ToDoListItem item)
         {
-            
-            if (item.Name == "test")
+
+            if (!Regex.IsMatch(item.Name, "^[a-zA-Z]+$"))
             {
-                ModelState.AddModelError("", "źle");
+                ModelState.AddModelError("Name", "Użyto złego formatu. Tylko litery");
             }
 
             if (ModelState.IsValid)
