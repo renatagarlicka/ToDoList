@@ -1,15 +1,18 @@
 ﻿@model List<Planner>
+@{
+    ViewData["Title"] = "Tygodniowy Planner";
+}
 
 <div class="container">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">
-               Tygodniowy planer
+            <h2 class="perfectColorText">
+                Tygodniowy planer
             </h2>
         </div>
         <div class="col-6">
-            <a asp-controller="Planner" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus"></i> Utwóż nowy tygodniowy planner
+            <a asp-controller="Planner" asp-action="Create" class="btn perfectColorButton">
+                <i class="bi bi-plus"></i> Utwóż nowy
             </a>
         </div>
     </div>
@@ -19,7 +22,7 @@
         {
             @foreach (var obj in Model)
             {
-                <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card cardOptions">
                     <div class="card-header">@obj.Name</div>
                     <div class="card-body">
                         <h4 class="card-title">@obj.Type</h4>
