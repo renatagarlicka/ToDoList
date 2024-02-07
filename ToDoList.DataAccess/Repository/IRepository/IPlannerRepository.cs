@@ -9,6 +9,6 @@ namespace ToDoList.DataAccess.Repository.IRepository
 {
     public interface IPlannerRepository : IRepository<Planner>
     {
-       
+        void Save();
     }
 }
