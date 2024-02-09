@@ -5,7 +5,7 @@
 namespace ToDoList.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class shoopChange : Migration
+    public partial class addEnumMonth : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

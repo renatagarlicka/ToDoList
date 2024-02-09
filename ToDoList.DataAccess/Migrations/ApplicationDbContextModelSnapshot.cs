@@ -241,6 +241,12 @@ namespace ToDoList.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("DayName")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DayNumber")
+                        .HasColumnType("int");
+
                     b.Property<bool>("MoodOption")
                         .HasColumnType("bit");
 
@@ -250,6 +256,12 @@ namespace ToDoList.DataAccess.Migrations
 
                     b.Property<bool>("NotesOption")
                         .HasColumnType("bit");
+
+                    b.Property<int>("PlannerMonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlannerYear")
+                        .HasColumnType("int");
 
                     b.Property<bool>("ProductiveOption")
                         .HasColumnType("bit");
@@ -263,7 +275,7 @@ namespace ToDoList.DataAccess.Migrations
                     b.Property<bool>("ToDoOption")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Type")
+                    b.Property<int>("TypeOfPlanner")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

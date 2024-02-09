@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ToDoList.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class addIdentityTables : Migration
+    public partial class InitioalizationDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,7 @@ namespace ToDoList.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -48,6 +49,60 @@ namespace ToDoList.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "planner",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    MoodOption = table.Column<bool>(type: "bit", nullable: false),
+                    ProductiveOption = table.Column<bool>(type: "bit", nullable: false),
+                    SelfCareOption = table.Column<bool>(type: "bit", nullable: false),
+                    ToDoOption = table.Column<bool>(type: "bit", nullable: false),
+                    NotesOption = table.Column<bool>(type: "bit", nullable: false),
+                    QuotesOption = table.Column<bool>(type: "bit", nullable: false),
+                    PlannerDay = table.Column<int>(type: "int", nullable: false),
+                    PlannerMonth = table.Column<int>(type: "int", nullable: false),
+                    PlannerYear = table.Column<int>(type: "int", nullable: false),
+                    DayName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_planner", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "shoppingList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_shoppingList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "toDoListItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    IsDone = table.Column<bool>(type: "bit", nullable: false),
+                    Progress = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_toDoListItems", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,6 +268,15 @@ namespace ToDoList.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "planner");
+
+            migrationBuilder.DropTable(
+                name: "shoppingList");
+
+            migrationBuilder.DropTable(
+                name: "toDoListItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

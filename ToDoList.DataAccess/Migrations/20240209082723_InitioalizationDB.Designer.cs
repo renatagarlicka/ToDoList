@@ -12,8 +12,8 @@ using ToDoList.DataAccess.Data;
 namespace ToDoList.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240203091301_ChangingColumnToEnumToDoList")]
-    partial class ChangingColumnToEnumToDoList
+    [Migration("20240209082723_InitioalizationDB")]
+    partial class InitioalizationDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,6 +244,10 @@ namespace ToDoList.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("DayName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("MoodOption")
                         .HasColumnType("bit");
 
@@ -253,6 +257,15 @@ namespace ToDoList.DataAccess.Migrations
 
                     b.Property<bool>("NotesOption")
                         .HasColumnType("bit");
+
+                    b.Property<int>("PlannerDay")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlannerMonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlannerYear")
+                        .HasColumnType("int");
 
                     b.Property<bool>("ProductiveOption")
                         .HasColumnType("bit");

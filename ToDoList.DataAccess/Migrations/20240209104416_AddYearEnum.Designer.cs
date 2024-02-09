@@ -12,8 +12,8 @@ using ToDoList.DataAccess.Data;
 namespace ToDoList.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240201193642_removeColumn")]
-    partial class removeColumn
+    [Migration("20240209104416_AddYearEnum")]
+    partial class AddYearEnum
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,6 +244,9 @@ namespace ToDoList.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("DayName")
+                        .HasColumnType("int");
+
                     b.Property<bool>("MoodOption")
                         .HasColumnType("bit");
 
@@ -254,6 +257,12 @@ namespace ToDoList.DataAccess.Migrations
                     b.Property<bool>("NotesOption")
                         .HasColumnType("bit");
 
+                    b.Property<int>("PlannerMonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlannerYear")
+                        .HasColumnType("int");
+
                     b.Property<bool>("ProductiveOption")
                         .HasColumnType("bit");
 
@@ -263,12 +272,11 @@ namespace ToDoList.DataAccess.Migrations
                     b.Property<bool>("SelfCareOption")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("ToDoOption")
                         .HasColumnType("bit");
+
+                    b.Property<int>("TypeOfPlanner")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -283,11 +291,7 @@ namespace ToDoList.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -296,13 +300,7 @@ namespace ToDoList.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("shoppingList");
                 });
@@ -328,13 +326,10 @@ namespace ToDoList.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Progress")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("toDoListItems");
                 });
@@ -342,14 +337,6 @@ namespace ToDoList.DataAccess.Migrations
             modelBuilder.Entity("ToDoList.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surrname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -403,31 +390,6 @@ namespace ToDoList.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ToDoList.Models.ShoppingList", b =>
-                {
-                    b.HasOne("ToDoList.Models.ApplicationUser", null)
-                        .WithMany("ShoppingLists")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("ToDoList.Models.ToDoListItem", b =>
-                {
-                    b.HasOne("ToDoList.Models.ApplicationUser", "User")
-                        .WithMany("ToDoLists")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ToDoList.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("ShoppingLists");
-
-                    b.Navigation("ToDoLists");
                 });
 #pragma warning restore 612, 618
         }

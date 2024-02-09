@@ -34,7 +34,7 @@ namespace ToDoList.Controllers
 
             if (ModelState.IsValid)
             {
-                item.Type = PlannerType.Daily;
+                item.TypeOfPlanner = PlannerType.Daily;
                 _plannerRepository.Add(item);
                 _plannerRepository.Save();
                 TempData["success"] = "Utworzono";

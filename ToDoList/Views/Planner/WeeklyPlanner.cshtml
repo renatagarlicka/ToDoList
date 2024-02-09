@@ -16,20 +16,34 @@
             </a>
         </div>
     </div>
-
     <div>
         @if (Model != null)
-        {
+        { <div class="container-fluid">
+                    <div class="row">
             @foreach (var obj in Model)
-            {
-                <div class="card cardOptions">
-                    <div class="card-header">@obj.Name</div>
-                    <div class="card-body">
-                        <h4 class="card-title">@obj.Type</h4>
-                        @* todo link to done planner  *@
-                    </div>
-                </div>
+            {               
+                        <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+                            <div class="card cardOptions">
+                                <div class="card-header">@obj.Name</div>
+                                <div class="card-body">                                    
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-2 col-sm-1">
+                                            <a asp-controller="Planner" asp-action="Open" asp-route-id="@obj.Id" class="btn btn-color mx-2">
+                                                <i class="bi bi-pencil-square"></i> Open @* todo action in controller*@
+                                            </a>
+                                         </div>
+                                        <div class="col-lg-3 col-md-2 col-sm-1"> 
+                                            <a asp-controller="Planner" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-color mx-2">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </a>
+                                         </div> 
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>                   
             }
+                </div>
+            </div>
         }
         else
         {

@@ -1,0 +1,72 @@
+﻿@model Planner
+@{
+    ViewData["Title"] = "Stwórz Planner";
+}
+<form method="post" id="dailyPlannerForm">
+    <div class="container">
+        <h2 class="perfectColorText">
+            Stwórz tygodniowy planer
+        </h2>
+        <div asp-validation-summary="All"></div>
+        <div class="row planerForm">
+            <div class="col-sm-6>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="perfectColorText"></span>
+            </div>
+        </div>
+        <div class="row planerForm">
+            <div class="col-sm-4">
+                <label class="perfectColorText">Wybierz dzień</label>
+                <select class="perfectColorText" name="PlannerDayName" asp-for="@Model.DayName" asp-items="@ViewBag.dayNameValues">
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-2">
+                <label>Podaj miesiąc</label>
+                <select class="perfectColorText" name="PlannerMonthName" asp-for="@Model.PlannerMonth" asp-items="@ViewBag.monthValues">
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-2">
+                <label>Podaj rok</label>
+                <select class="perfectColorText" name="PlannerYearName" asp-for="@Model.PlannerYear" asp-items="@ViewBag.yearValues">
+                </select>
+            </div>
+        </div>
+        <div class="row planerForm">
+            <div class="col-lg-4 col-md-2">
+                <label asp-for="MoodOption"></label>
+                <input asp-for="MoodOption" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+            </div>
+            <div class="col-lg-4 col-md-2">
+                <label asp-for="ProductiveOption"></label>
+                <input asp-for="ProductiveOption" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+            </div>
+            <div class="col-lg-4 col-md-2">
+                <label asp-for="SelfCareOption"></label>
+                <input asp-for="SelfCareOption" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+            </div>
+        </div>
+        <div class="row planerForm">
+            <div class="col-lg-4 col-md-2">
+                <label asp-for="ToDoOption"></label>
+                <input asp-for="ToDoOption" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+            </div>
+            <div class="col-lg-4 col-md-2">
+                <label asp-for="NotesOption"></label>
+                <input asp-for="NotesOption" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+            </div>
+            <div class="col-lg-4 col-md-2">
+                <label asp-for="QuotesOption"></label>
+                <input asp-for="QuotesOption" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+            </div>
+        </div>
+        <div class="row planerForm">
+            <div class="col-lg-6 col-md-2 col-sm-1">
+                <button type="submit" class="btn perfectColorButton">Stwórz</button>
+            </div>
+            <div class="col-lg-6 col-md-2 col-sm-1">
+                <a asp-controller="Planner" asp-action="Index" class="btn perfectColorButton">Powrót</a>
+            </div>
+        </div>
+    </div>
+</form>
